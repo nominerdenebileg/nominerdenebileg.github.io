@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nomin Erdenebileg — Aerospace Engineering</title>
+<meta name="description" content="Nomin Erdenebileg — Aerospace Engineering student specializing in structures, fabrication, and design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0d12;
+    --panel:#0d1219;
+    --line:rgba(0,238,255,.35);
+    --line-soft:rgba(255,255,255,.08);
+    --text:#e9edf1;
+    --text-dim:rgba(233,237,241,.68);
+    --text-faint:rgba(233,237,241,.42);
+    --accent:#00eeff;
+    --headingMediumColor:#00eeff;
+    --maxw:1100px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', system-ui, sans-serif;
+    font-weight:600;
+    margin:0;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  ::selection{background:rgba(0,238,255,.25); color:#fff;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .skip-link{
+    position:absolute; left:-999px; top:0;
+    background:var(--accent); color:#000; padding:8px 16px; z-index:200;
+  }
+  .skip-link:focus{left:12px; top:12px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px clamp(20px,5vw,56px);
+    background:rgba(10,13,18,.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:18px; font-weight:600; letter-spacing:.2px;
+    text-decoration:none; white-space:nowrap;
+  }
+  nav.primary-nav{display:flex; gap:clamp(18px,3vw,36px);}
+  nav.primary-nav a{
+    text-decoration:none;
+    font-size:15px;
+    color:var(--text-dim);
+    position:relative;
+    padding:4px 0;
+    transition:color .2s ease;
+  }
+  nav.primary-nav a:hover{color:var(--text);}
+  nav.primary-nav a::after{
+    content:"";
+    position:absolute; left:0; bottom:-3px;
+    width:0; height:1px; background:var(--accent);
+    transition:width .25s ease;
+  }
+  nav.primary-nav a:hover::after{width:100%;}
+
+  .nav-toggle{
+    display:none;
+    background:none; border:none; color:var(--text); cursor:pointer;
+    padding:6px;
+  }
+  .nav-toggle svg{display:block;}
+
+  @media (max-width:760px){
+    nav.primary-nav{
+      position:fixed; top:64px; right:0; left:0;
+      flex-direction:column; gap:0;
+      background:var(--panel);
+      border-bottom:1px solid var(--line-soft);
+      max-height:0; overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    nav.primary-nav.open{max-height:340px;}
+    nav.primary-nav a{
+      padding:16px 24px;
+      border-bottom:1px solid var(--line-soft);
+      width:100%;
+    }
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- LAYOUT ---------- */
+  section{
+    padding:120px clamp(20px,5vw,56px) 80px;
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
+  section.tight{padding-top:90px;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--text-faint);
+    margin-bottom:14px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:92vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top:90px;
+  }
+  .hero h1{
+    font-size:clamp(38px,6vw,64px);
+    line-height:1.08;
+    letter-spacing:-.5px;
+  }
+  .hero .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:clamp(16px,2vw,20px);
+    color:var(--accent);
+    margin-top:18px;
+  }
+  .hero .tagline{
+    font-size:clamp(16px,1.6vw,19px);
+    color:var(--text-dim);
+    margin-top:10px;
+    max-width:640px;
+  }
+  .hero-divider{
+    width:64px; height:2px; background:var(--accent);
+    margin-top:40px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about h2{font-size:clamp(26px,3vw,34px); margin-bottom:26px;}
+  .about p{
+    font-size:18px;
+    color:var(--text-dim);
+    max-width:720px;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills h2{font-size:clamp(26px,3vw,34px); margin-bottom:44px;}
+  .skill-item{width:100%;max-width:100%;margin-bottom:34px}
+  .skill-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .skill-name{font-size:20px;font-weight:600;font-family:'Space Grotesk',sans-serif;}
+  .skill-level{font-size:14px;font-family:'IBM Plex Mono',monospace;color:var(--text-faint);}
+  .skill-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:100%}
+  .skill-segment{height:8px;border-radius:2px;background-color:rgba(255,255,255,.08)}
+  .skill-segment.active{background-color:var(--headingMediumColor)}
+  @media screen and (max-width:767px){
+    .skill-item{margin-bottom:27px}
+    .skill-name{font-size:17px}
+    .skill-level{font-size:12px}
+    .skill-segment{height:7px}
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .experience h2{font-size:clamp(26px,3vw,34px); margin-bottom:44px;}
+  .aircraft-experience{
+    width:100%; display:grid; grid-template-columns:repeat(2,1fr); gap:28px;
+  }
+  .aircraft-card{
+    padding:30px; border:1px solid var(--line); border-radius:16px;
+    background:var(--panel);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .aircraft-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent);
+    box-shadow:0 10px 30px rgba(0,238,255,.2);
+  }
+  .aircraft-org{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:.4px; color:var(--text-faint); margin-bottom:10px;
+  }
+  .aircraft-role{font-size:24px; font-weight:700; line-height:1.15; margin-bottom:16px;}
+  .aircraft-description{font-size:16px; line-height:1.65; color:var(--text-dim); margin:0;}
+  @media screen and (max-width:800px){
+    .aircraft-experience{grid-template-columns:1fr; gap:20px;}
+    .aircraft-card{padding:24px;}
+    .aircraft-role{font-size:21px;}
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .projects h2{font-size:clamp(26px,3vw,34px); margin-bottom:12px;}
+  .projects .section-sub{color:var(--text-dim); font-size:16px; margin-bottom:40px;}
+  .work-gallery{width:100%; display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin:0 0 40px;}
+  .work-gallery-2col{width:100%; display:grid; grid-template-columns:repeat(2,1fr); gap:28px;}
+  .work-card{
+    padding:24px; border:1px solid var(--line); border-radius:16px;
+    background:var(--panel);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .work-card:hover{
+    transform:translateY(-4px); border-color:var(--accent);
+    box-shadow:0 10px 30px rgba(0,238,255,.2);
+  }
+  .work-image{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:10px; display:block; margin-bottom:18px; background:#000;}
+  .work-name{font-size:19px; font-weight:700; line-height:1.2; margin-bottom:10px; color:var(--headingMediumColor); font-family:'Space Grotesk',sans-serif;}
+  .work-description{font-size:15px; line-height:1.6; color:var(--text-dim); margin:0;}
+  @media screen and (max-width:800px){
+    .work-gallery, .work-gallery-2col{grid-template-columns:1fr; gap:20px;}
+    .work-card{padding:20px;}
+  }
+
+  /* ---------- RESUME ---------- */
+  .resume h2{font-size:clamp(26px,3vw,34px); margin-bottom:26px;}
+  .resume-block{
+    width:100%; padding:28px; border:1px solid var(--line); border-radius:16px;
+    background:var(--panel); text-align:center;
+  }
+  .resume-description{font-size:16px; color:var(--text-dim); margin:0 0 24px;}
+  .resume-embed{width:100%; height:800px; border:1px solid var(--line-soft); border-radius:10px; margin-bottom:24px;}
+  .resume-download-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 30px; border-radius:999px;
+    border:1px solid var(--accent); background:var(--accent); color:#000;
+    font-weight:700; font-size:15px; text-decoration:none;
+    transition:background .25s ease, color .25s ease, transform .25s ease;
+  }
+  .resume-download-btn:hover{background:transparent; color:var(--accent); transform:translateY(-2px);}
+  @media screen and (max-width:800px){.resume-embed{height:480px;}}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line-soft);
+    padding:56px clamp(20px,5vw,56px) 40px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  footer .foot-name{
+    font-family:'Space Grotesk', sans-serif; font-size:20px; font-weight:600; margin-bottom:14px;
+  }
+  footer .foot-contact{
+    display:flex; flex-wrap:wrap; gap:22px;
+    font-size:15px; color:var(--text-dim);
+  }
+  footer .foot-contact a{text-decoration:none; color:var(--text-dim); transition:color .2s ease;}
+  footer .foot-contact a:hover{color:var(--accent);}
+  footer .foot-bottom{
+    margin-top:36px; font-size:13px; color:var(--text-faint);
+    font-family:'IBM Plex Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <a class="logo" href="#top">Nomin Erdenebileg</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primaryNav">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <nav class="primary-nav" id="primaryNav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO / ABOUT -->
+  <section class="hero" id="top">
+    <h1>Hello, I am<br>Nomin Erdenebileg</h1>
+    <div class="role">Aerospace Engineering Student</div>
+    <p class="tagline">Passionate about structures, fabrication, and design.</p>
+    <div class="hero-divider"></div>
+  </section>
+
+  <section class="about tight" id="about">
+    <div class="eyebrow">About</div>
+    <h2>About me</h2>
+    <p>I am a dedicated aerospace engineering student at the University of Illinois Urbana&#8211;Champaign (expected graduation: May 2027) with hands-on experience in rocket and aircraft structures, FEA analysis, and manufacturing. I excel in multidisciplinary teams, solving problems, and optimizing performance.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="eyebrow">Skills</div>
+    <h2>What I work with</h2>
+
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">CAD (SolidWorks, Onshape, NX)</span><span class="skill-level">Advanced</span></div>
+      <div class="skill-bar">
+        <div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Finite Element Analysis (ABAQUS)</span><span class="skill-level">Advanced</span></div>
+      <div class="skill-bar">
+        <div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Machining</span><span class="skill-level">Proficient</span></div>
+      <div class="skill-bar">
+        <div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">GD&amp;T</span><span class="skill-level">Good</span></div>
+      <div class="skill-bar">
+        <div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+      </div>
+    </div>
+
+    <div class="skill-item">
+      <div class="skill-header"><span class="skill-name">Python</span><span class="skill-level">Good</span></div>
+      <div class="skill-bar">
+        <div class="skill-segment active"></div><div class="skill-segment active"></div><div class="skill-segment"></div><div class="skill-segment"></div><div class="skill-segment"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience" id="experience">
+    <div class="eyebrow">Experience</div>
+    <h2>Experience</h2>
+
+    <div class="aircraft-experience">
+      <div class="aircraft-card">
+        <div class="aircraft-org">Rocket Propulsion Lab | Aug 2024 &#8211; June 2025</div>
+        <div class="aircraft-role">Structures Team</div>
+        <p class="aircraft-description">
+          Designed and CAD-modeled avionics bay. Conducted ultimate load testing on recovery hardware (U-bolts, eyebolts, bulkheads, all-thread rods) and continuity testing to validate structural and separation system integrity. Fabricated carbon fiber body tube and nose cone via filament winding and hand layup, and machined aluminum and fiberglass bulkheads, charge wells, and fins on manual mills and lathes.
+        </p>
+      </div>
+
+      <div class="aircraft-card">
+        <div class="aircraft-org">Personal Project | Jan 2026 &#8211; Apr 2026</div>
+        <div class="aircraft-role">High-Power Rocket (L1 Certified)</div>
+        <p class="aircraft-description">
+          Designed and built an L1 rocket from scratch with an onboard camera. Ran OpenRocket and ANSYS Fluent CFD analysis to optimize airframe shape and stability, 3D-printed the nosecone and camera mount, and laser-cut centering rings and fins for assembly. Designed and integrated the recovery system, achieving L1 certification at 714 ft apogee.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT GALLERY -->
+  <section class="projects" id="projects">
+    <div class="eyebrow">Project gallery</div>
+    <h2>Selected work</h2>
+    <p class="section-sub">Design, fabrication, and flight &#8212; from CAD to the launch pad.</p>
+
+    <div class="work-gallery">
+      <div class="work-card">
+        <img class="work-image" src="https://images.squarespace-cdn.com/content/6a8daf3a0c08394e500b2e00/6ac5ae82-2f94-40f9-8468-0b576f0ce631/AV_bay.png?content-type=image%2Fpng" alt="Rendered avionics bay assembly for the Starlance rocket" loading="lazy">
+        <div class="work-name">Starlance Avionics Bay Assembly (Onshape)</div>
+        <p class="work-description">
+          Designed and modeled the full avionics bay for Starlance, our IREC 2025 competition rocket. Every section has a job &#8212; dual Stratologgers and an SRAD flight computer for reliable dual deployment, three onboard cameras and air-data sensors in the chamber, and a dedicated Li-Ion battery bay powering live telemetry and video back to our ground station.
+        </p>
+      </div>
+
+      <div class="work-card">
+        <img class="work-image" src="https://images.squarespace-cdn.com/content/6a8daf3a0c08394e500b2e00/eb77199d-fa07-4f80-944e-208279c4d733/fin_machining.png?content-type=image%2Fpng" alt="Waterjet-cut fiberglass fin being machined on a mill" loading="lazy">
+        <div class="work-name">Waterjet-Cut &amp; Machined Fiberglass Fins</div>
+        <p class="work-description">
+          Cut Starlance's fins in-house from 0.25 in G10 fiberglass using a waterjet, then took them to the mill to shape a true airfoil profile, chamfered at 7&#176; down to 1 inch from the edge &#8212; a reminder that aerodynamics starts on the shop floor.
+        </p>
+      </div>
+
+      <div class="work-card">
+        <img class="work-image" src="https://images.squarespace-cdn.com/content/6a8daf3a0c08394e500b2e00/73dd8ef4-4382-4eb4-9069-bf0cfb63dced/DSC02532.JPG?content-type=image%2Fjpeg" alt="Final pre-flight wiring check on the L1 rocket" loading="lazy">
+        <div class="work-name">L1 Rocket &#8212; Final Pre-Flight Prep</div>
+        <p class="work-description">
+          The moment before launch: wiring up ignition on my Level 1 rocket, built completely from scratch. From CAD to fabrication to this final systems check on the pad.
+        </p>
+      </div>
+    </div>
+
+    <div class="work-gallery-2col">
+      <div class="work-card">
+        <img class="work-image" src="https://images.squarespace-cdn.com/content/6a8daf3a0c08394e500b2e00/4882aec4-9805-44a0-aa53-2a9a2224e5cd/awards.jpg?content-type=image%2Fjpeg" alt="Team holding a 4th place award at IREC 2025" loading="lazy">
+        <div class="work-name">4th Place &#8212; IREC 2025</div>
+        <p class="work-description">
+          Placed 4th in the Student Researched and Developed 10K ft category at IREC 2025 in Midland, TX, competing against 172 university teams from around the world &#8212; an incredible experience seeing Starlance fly at the world's largest collegiate rocketry competition.
+        </p>
+      </div>
+
+      <div class="work-card">
+        <video class="work-image" src="https://github.com/nomine-code/L1/raw/refs/heads/main/launch_l1.mp4" controls muted playsinline></video>
+        <div class="work-name">Onboard Flight Video &#8212; L1 Certification</div>
+        <p class="work-description">
+          Onboard footage from my Level 1 certification flight. You can really see the roll during ascent &#8212; lots of great data to learn from, with L2 already in the works with a focus on improving altitude and roll control.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section class="resume" id="resume">
+    <div class="eyebrow">Resume</div>
+    <h2>Resume</h2>
+    <div class="resume-block">
+      <p class="resume-description">View or download my full resume below.</p>
+      <iframe class="resume-embed" src="https://drive.google.com/file/d/1nWY42PzOLz-6djSwiI4dWM9yFmek8G-i/preview" title="Nomin Erdenebileg resume preview" loading="lazy"></iframe>
+      <a class="resume-download-btn" href="https://drive.google.com/uc?export=download&id=1nWY42PzOLz-6djSwiI4dWM9yFmek8G-i" download="Nomin_Erdenebileg_RESUME2026.pdf">
+        &#8681; Download resume
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="foot-name">Nomin Erdenebileg</div>
+  <div class="foot-contact">
+    <a href="mailto:REPLACE_WITH_EMAIL@example.com">REPLACE_WITH_EMAIL@example.com</a>
+    <a href="tel:+10000000000">(000) 000-0000</a>
+  </div>
+  <div class="foot-bottom">&copy; <span id="year"></span> Nomin Erdenebileg</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('primaryNav');
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
